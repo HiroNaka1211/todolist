@@ -1,39 +1,95 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"></html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
     <title>Todo app</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="todo">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Add</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <button class="btn btn-outline-success" type="submit">Log in</button>
-            </form>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="todo">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Add</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-success" type="submit">
+              Log in
+            </button>
+          </form>
         </div>
-      </nav>
+      </div>
+    </nav>
     <div class="container">
-        <p>AAAA</p>
+      <h1>Todo Management App</h1>
+      <th:block th:if="${todos.size() == 0}">
+        <p>登録してあるtodoはありません。</p>
+      </th:block>
+
+      <th:block th:unless="${todos.size() == 0}">
+        <div>
+          <table class="table table-bordered table-hover table-striped" style="table-layout:fixed">
+            <thead class="table-dark">
+              <tr>
+                <th class="count" scope="col">#</th>
+                <th class="title" scope="col">Title</th>
+                <th class="detail" scope="col">Detail</th>
+                <th class="pic" scope="col">PIC</th>
+                <th class="date" scope="col">Date</th>
+                <th class="edit" scope="col" colspan="2">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <th:block th:each="todo, stat: ${todos}">
+                <tr>
+                  <td th:text="${stat.count}"></th>
+                  <td th:text="${todo.getTitle()}"></td>
+                  <td th:text="${todo.getDetail()}"></td>
+                  <td th:text="${todo.getPic()}"></td>
+                  <td th:text="${todo.getDate()}"></td>
+                  <td class="btn-center">
+                    <button type="button" class="btn btn-sm btn-primary">
+                      詳細
+                    </button>
+                  </td>
+                  <td class="btn-center">
+                    <button type="button" class="btn btn-sm btn-danger">
+                      削除
+                    </button>
+                  </td>
+                </tr>
+              </th:block>
+            </tbody>
+          </table>
+        </div>
+      </th:block>
     </div>
-</body>
+  </body>
 </html>

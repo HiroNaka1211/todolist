@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.count {
+  width: 5%;
+}
+
+.title {
+  width: 20%;
+}
+
+.detail {
+  width: 30%;
+}
+
+.pic {
+  width: 20%;
+}
+
+.date {
+  width: 10%;
+}
+
+.edit {
+  width: 15%;
+}
+
+table tr th {
+  text-align: center;
+}
+
+table td {
+  word-wrap: break-word;
+}
+
+.btn-center {
+  text-align: center;
+  vertical-align: middle;
+}
